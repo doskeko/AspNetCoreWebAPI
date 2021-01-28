@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -34,10 +36,39 @@ namespace SmartSchool.WebAPI
             //services.AddTransient<IRepository, Repository>();
             //O NewtonSoft serve para evitar o loop de json
             services.AddControllers()
-                    .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = 
+                    .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling =
                     Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<IRepository, Repository>();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("SmartSchoolAPI", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "SmartSchool API",
+                    Version = "1.0",
+                    TermsOfService = new Uri("https://github.com/doskeko"),
+                    Description = "Descrição do SmartSchoolAPI",
+                    License = new Microsoft.OpenApi.Models.OpenApiLicense
+                    {
+                        Name = "SmartSchool Licence",   
+                        Url = new Uri("https://github.com/doskeko")
+                    },
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact
+                    {
+                        Name = "Bebedico Tosa",
+                        Email = "doskeko@gmail.com",
+                        Url = new Uri("https://github.com/doskeko")
+                    }
+
+                });
+                var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+
+                options.IncludeXmlComments(xmlCommentsFullPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +82,8 @@ namespace SmartSchool.WebAPI
             //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseSwagger();
 
             //app.UseAuthorization();
 

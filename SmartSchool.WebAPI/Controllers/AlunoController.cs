@@ -7,6 +7,10 @@ using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Controllers
 {
+    /// <sumary>
+    ///
+    /// </sumary>
+    /// <returns></returns>
     [ApiController]
     [Route("api/[controller]")]
     public class AlunoController : ControllerBase
