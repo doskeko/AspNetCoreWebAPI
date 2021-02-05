@@ -4,7 +4,13 @@
         <name>SmartSchool.WebAPI</name>
     </assembly>
     <members>
-        <member name="T:SmartSchool.WebAPI.Controllers.AlunoController">
+        <member name="T:SmartSchool.WebAPI.V1.Controllers.AlunoController">
+             <sumary>
+            
+             </sumary>
+             <returns></returns>
+        </member>
+        <member name="T:SmartSchool.WebAPI.V2.Controllers.AlunoController">
              <sumary>
             
              </sumary>
