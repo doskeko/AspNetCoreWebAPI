@@ -10,6 +10,12 @@
              </sumary>
              <returns></returns>
         </member>
+        <member name="M:SmartSchool.WebAPI.V1.Controllers.AlunoController.GetByDisciplinaId(System.Int32)">
+            <summary>
+            Retorna alunos pela disciplina
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SmartSchool.WebAPI.V2.Controllers.AlunoController">
              <sumary>
             
